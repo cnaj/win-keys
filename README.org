@@ -1,0 +1,55 @@
+#+TITLE: Windows key mappings for Emacs
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+
+* About
+
+This windows registry entry maps the control keys in such a way that
+the (in Emacs) often-used =Ctrl= key comes to lie right next to the
+space bar and the =Alt= key right next to it, to the right and the
+left of the space bar. This way, there is symmetry in using those keys
+with the right and the left hand, and the =Ctrl= keys can be typed by
+curling your thumb. Additionally, =CAPS= is mapped to an additional
+=Ctrl=, making it very accessible by using the left pinky.
+
+Because the original left =Ctrl= key is left in place, most Windows
+key combinations work like usual. If you're switching between Windows
+and Mac, you can configure a similar mapping in macOS's Keyboard
+Settings, having =Cmd= in the same location as =Ctrl= on Windows.  In
+effect, this allows you to type the same physical key combination for
+=Ctrl-V= and =Cmd-V= on both systems, respectively.
+
+The =App= key on serves as a =AltRight= key, making key combinations
+for international characters accessible when using the
+/US-International/ or German keyboard layout, for example. Finally,
+the right =Ctrl= key becomes the =Win= key. Be aware that some laptop
+keyboards might not have the right =Ctrl= key, preventing the use of
+the =Win-L= combination to lock your screen, for example.
+
+Also, the =Ctrl-Alt-Delete= combination works differently because of
+the changed location of th =Alt= key.
+
+* Registry Entry
+
+** Registry Entry file
+
+#+INCLUDE: "./KeyMapping.reg" example
+
+** Explanation
+
+| Pos | from        | Scan code | to          | Scan code |
+|-----+-------------+-----------+-------------+-----------|
+|  1. | =CAPS=      | ~3a 00~   | =CtrlLeft=  | ~1d 00~   |
+|  2. | =WinLeft=   | ~5b e0~   | =AltLeft=   | ~38 00~   |
+|  3. | =AltLeft=   | ~38 00~   | =CtrlLeft=  | ~1d 00~   |
+|  4. | =AltRight=  | ~38 e0~   | =CtrlRight= | ~1d e0~   |
+|  5. | =WinRight=  | ~5c e0~   | =AltLeft=   | ~38 00~   |
+|  6. | =App=       | ~5d e0~   | =AltRight=  | ~38 e0~   |
+|  7. | =CtrlRight= | ~1d e0~   | =WinLeft=   | ~5b e0~   |
+
+Caveats:
+- =App= key is disabled
+- =CAPS= is disabled
+- =Ctrl-Alt-Delete= is now =Ctrl-Win-Delete=
+- =Win= combinations: e.g. =Win-L= (lock screen) is now =CtrlRight-L=
+- =AltRight= (e.g. for US-Intl key combinations) is now =App=
