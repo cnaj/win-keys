@@ -1,5 +1,4 @@
 #+TITLE: Windows key mappings for Emacs
-#+OPTIONS: toc:nil
 #+OPTIONS: num:nil
 
 * About
@@ -26,16 +25,39 @@ the right =Ctrl= key becomes the =Win= key. Be aware that some laptop
 keyboards might not have the right =Ctrl= key, preventing the use of
 the =Win-L= combination to lock your screen, for example.
 
-Also, the =Ctrl-Alt-Delete= combination works differently because of
-the changed location of th =Alt= key.
+** Caveats
+
+- The changes only take effect after a reboot
+- all users of the computer are affected by these changes
+- =Ctrl-Alt-Delete= works differently because of the changed location
+  of the =Alt= key (might upset IT staff)
+- =Win= combinations (e.g. =Win-L= to lock screen) now use the right
+  =Ctrl= key
+- =App= key is disabled
+- =CAPS= is disabled
+- =AltRight= (e.g. for US-Intl key combinations) is the key labeled
+  =App=
 
 * Registry Entry
 
+The key mappings are done on a low system level using the Windows scan
+code mapper, so no additional drivers are needed.
+
 ** Registry Entry file
+
+[[./KeyMapping.reg][Download]] the =.reg= file (or copy the text below into an appropriate
+file) and run it (i.e. merge it with your local registry).
 
 #+INCLUDE: "./KeyMapping.reg" example
 
 ** Explanation
+
+This [[https://msdn.microsoft.com/en-us/library/windows/hardware/jj128267(v=vs.85).aspx#scan_code_mapper_for_keyboards][MSDN article]] explains the configuration of the scan code
+mapper. The most accurate table of scan codes I could find can be
+seen [[http://www.winfaq.de/faq_html/Content/tip1500/onlinefaq.php?h=tip1576.htm][here]].
+
+For reference, these are the mappings used in the registy entry, in
+the order they occur in the entry's byte sequence:
 
 | Pos | from        | Scan code | to          | Scan code |
 |-----+-------------+-----------+-------------+-----------|
@@ -47,9 +69,8 @@ the changed location of th =Alt= key.
 |  6. | =App=       | ~5d e0~   | =AltRight=  | ~38 e0~   |
 |  7. | =CtrlRight= | ~1d e0~   | =WinLeft=   | ~5b e0~   |
 
-Caveats:
-- =App= key is disabled
-- =CAPS= is disabled
-- =Ctrl-Alt-Delete= is now =Ctrl-Win-Delete=
-- =Win= combinations: e.g. =Win-L= (lock screen) is now =CtrlRight-L=
-- =AltRight= (e.g. for US-Intl key combinations) is now =App=
+** Remove keyboard mappings
+
+Remove all scan code mappings with [[./RemoveKeyMapping.reg][this]] entry:
+
+#+INCLUDE: "~/github/win-keys/RemoveKeyMapping.reg" example
