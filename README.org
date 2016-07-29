@@ -7,18 +7,18 @@ This windows registry entry maps the control keys in such a way that
 the (in Emacs) often-used =Ctrl= key comes to lie right next to the
 space bar and the =Alt= key right next to it, to the right and the
 left of the space bar. This way, there is symmetry in using those keys
-with the right and the left hand, and the =Ctrl= keys can be typed by
-curling your thumb. Additionally, =CAPS= is mapped to an additional
-=Ctrl=, making it very accessible by using the left pinky.
+with the right and the left hand, and =Ctrl= can be pressed by curling
+your thumb. Additionally, =CAPS= is mapped to an additional =Ctrl=,
+making it very accessible by using the left pinky.
 
 Because the original left =Ctrl= key is left in place, most Windows
 key combinations work like usual. If you're switching between Windows
 and Mac, you can configure a similar mapping in macOS's Keyboard
 Settings, having =Cmd= in the same location as =Ctrl= on Windows.  In
-effect, this allows you to type the same physical key combination for
-=Ctrl-V= and =Cmd-V= on both systems, respectively.
+effect, this allows you to type the same physical keys for
+combinations like =Ctrl-V= and =Cmd-V= on both systems.
 
-The =App= key on serves as a =AltRight= key, making key combinations
+The =App= key now serves as a =AltRight= key, making key combinations
 for international characters accessible when using the
 /US-International/ or German keyboard layout, for example. Finally,
 the right =Ctrl= key becomes the =Win= key. Be aware that some laptop
@@ -35,8 +35,8 @@ the =Win-L= combination to lock your screen, for example.
   =Ctrl= key
 - =App= key is disabled
 - =CAPS= is disabled
-- =AltRight= (e.g. for US-Intl key combinations) is the key labeled
-  =App=
+- =AltRight= (e.g. for US-Intl key combinations), or =AltGr= in ISO
+  layouts, is now the key labeled =App=
 
 * Registry Entry
 
@@ -73,4 +73,4 @@ the order they occur in the entry's byte sequence:
 
 Remove all scan code mappings with [[./RemoveKeyMapping.reg][this]] entry:
 
-#+INCLUDE: "~/github/win-keys/RemoveKeyMapping.reg" example
+#+INCLUDE: "./RemoveKeyMapping.reg" example
