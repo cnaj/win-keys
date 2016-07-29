@@ -27,7 +27,7 @@ the =Win-L= combination to lock your screen, for example.
 
 ** Caveats
 
-- The changes only take effect after a reboot
+- the changes only take effect after a reboot
 - all users of the computer are affected by these changes
 - =Ctrl-Alt-Delete= works differently because of the changed location
   of the =Alt= key (might upset IT staff)
@@ -48,7 +48,12 @@ code mapper, so no additional drivers are needed.
 [[./KeyMapping.reg][Download]] the =.reg= file (or copy the text below into an appropriate
 file) and run it (i.e. merge it with your local registry).
 
-#+INCLUDE: "./KeyMapping.reg" example
+#+BEGIN_EXAMPLE
+  Windows Registry Editor Version 5.00
+
+  [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
+  "Scancode Map"=hex:00,00,00,00,00,00,00,00,08,00,00,00,1d,00,3a,00,38,00,5b,e0,1d,00,38,00,1d,e0,38,e0,38,00,5c,e0,38,e0,5d,e0,5b,e0,1d,e0,00,00,00,00
+#+END_EXAMPLE
 
 ** Explanation
 
@@ -73,4 +78,9 @@ the order they occur in the entry's byte sequence:
 
 Remove all scan code mappings with [[./RemoveKeyMapping.reg][this]] entry:
 
-#+INCLUDE: "./RemoveKeyMapping.reg" example
+#+BEGIN_EXAMPLE
+  Windows Registry Editor Version 5.00
+
+  [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
+  "Scancode Map"=-
+#+END_EXAMPLE
